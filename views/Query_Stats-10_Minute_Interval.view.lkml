@@ -11,29 +11,36 @@ view: QueryStats_10_Minute_Interval {
     type: number
     label: "Average Bytes"
     sql: SUM(${TABLE}.avg_bytes)/SUM(${TABLE}.execution_count) ;;
+    value_format: "0.00"
   }
 
   measure: avg_cpu_seconds {
     type: number
     label: "Average CPU Seconds"
     sql: SUM(${TABLE}.avg_cpu_seconds)/SUM(${TABLE}.execution_count) ;;
+    value_format: "0.00"
   }
 
   measure: avg_latency_seconds {
     type: number
     label: "Average Latency Seconds"
     sql: SUM(${TABLE}.avg_latency_seconds)/SUM(${TABLE}.execution_count) ;;
+    value_format: "0.00"
+    drill_fields: [interval_end_time,text,avg_bytes,avg_cpu_seconds,avg_latency_seconds,avg_rows,avg_rows_scanned]
   }
 
   measure: avg_rows {
     type: number
     label: "Average Rows"
     sql: SUM(${TABLE}.avg_rows)/SUM(${TABLE}.execution_count) ;;
+    value_format: "0.00"
   }
 
   measure: avg_rows_scanned {
     type: number
+    label: "Average Rows Scanned"
     sql: SUM(${TABLE}.avg_rows_scanned)/SUM(${TABLE}.execution_count) ;;
+    value_format: "0.00"
   }
 
   measure: cancelled_or_disconnected_execution_count {
@@ -84,6 +91,7 @@ view: QueryStats_10_Minute_Interval {
     type: sum
     label: "Failed Execution Count"
     sql: ${TABLE}.all_failed_execution_count ;;
+    drill_fields: [interval_end_time,text,avg_bytes,avg_cpu_seconds,avg_latency_seconds,avg_rows,avg_rows_scanned]
   }
 
   measure: count {
@@ -98,6 +106,7 @@ view: QueryStats_10_Minute_Interval {
     label: "Failed Execution Percentage"
     sql: SUM(${TABLE}.all_failed_execution_count)/SUM(${TABLE}.execution_count)*100 ;;
     drill_fields: []
+    value_format: "0.00"
   }
 
   measure: total_records {
