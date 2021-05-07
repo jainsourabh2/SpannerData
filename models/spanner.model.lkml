@@ -29,7 +29,7 @@ persist_with: spanner_default_datagroup
 #   }
 # }
 
-explore: query_stats_top_10minute {}
+explore: QueryStats_10_Minute_Interval {}
 
 explore: query_stats_top_hour {}
 
