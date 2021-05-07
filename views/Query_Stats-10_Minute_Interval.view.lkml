@@ -2,45 +2,49 @@ view: QueryStats_10_Minute_Interval {
   sql_table_name: `spanner_sys.query_stats_top_10minute`
     ;;
 
-  dimension: all_failed_execution_count {
+  # dimension: all_failed_execution_count {
+  #   type: number
+  #   sql: ${TABLE}.all_failed_execution_count ;;
+  # }
+
+  measure: avg_bytes {
     type: number
-    sql: ${TABLE}.all_failed_execution_count ;;
+    label: "Average Bytes"
+    sql: SUM(${TABLE}.avg_bytes)/SUM(${TABLE}.execution_count) ;;
   }
 
-  dimension: avg_bytes {
+  measure: avg_cpu_seconds {
     type: number
-    sql: ${TABLE}.avg_bytes ;;
+    label: "Average CPU Seconds"
+    sql: SUM(${TABLE}.avg_cpu_seconds)/SUM(${TABLE}.execution_count) ;;
   }
 
-  dimension: avg_cpu_seconds {
+  measure: avg_latency_seconds {
     type: number
-    sql: ${TABLE}.avg_cpu_seconds ;;
+    label: "Average Latency Seconds"
+    sql: SUM(${TABLE}.avg_latency_seconds)/SUM(${TABLE}.execution_count) ;;
   }
 
-  dimension: avg_latency_seconds {
+  measure: avg_rows {
     type: number
-    sql: ${TABLE}.avg_latency_seconds ;;
+    label: "Average Rows"
+    sql: SUM(${TABLE}.avg_rows)/SUM(${TABLE}.execution_count) ;;
   }
 
-  dimension: avg_rows {
+  measure: avg_rows_scanned {
     type: number
-    sql: ${TABLE}.avg_rows ;;
+    sql: SUM(${TABLE}.avg_rows_scanned)/SUM(${TABLE}.execution_count) ;;
   }
 
-  dimension: avg_rows_scanned {
-    type: number
-    sql: ${TABLE}.avg_rows_scanned ;;
-  }
-
-  dimension: cancelled_or_disconnected_execution_count {
-    type: number
+  measure: cancelled_or_disconnected_execution_count {
+    type: sum
     sql: ${TABLE}.cancelled_or_disconnected_execution_count ;;
   }
 
-  dimension: execution_count {
-    type: number
-    sql: ${TABLE}.execution_count ;;
-  }
+  # dimension: execution_count {
+  #   type: number
+  #   sql: ${TABLE}.execution_count ;;
+  # }
 
   dimension_group: interval_end {
     type: time
@@ -71,25 +75,36 @@ view: QueryStats_10_Minute_Interval {
     sql: ${TABLE}.text_truncated ;;
   }
 
-  dimension: timed_out_execution_count {
-    type: number
+  measure: timed_out_execution_count {
+    type: sum
     sql: ${TABLE}.timed_out_execution_count ;;
   }
 
-  # dimension: all_failed_avg_latency_seconds {
-  #   type: number
-  #   sql: ${TABLE}.all_failed_avg_latency_seconds ;;
-  # }
-
-  measure: all_failed_avg_latency_seconds {
+  measure: failed_execution_count {
     type: sum
-    label: "All Failed Avg Latency Seconds"
-    sql: ${TABLE}.all_failed_avg_latency_seconds ;;
+    label: "Failed Execution Count"
+    sql: ${TABLE}.all_failed_execution_count ;;
   }
 
   measure: count {
-    type: count
-    label: "Total Count"
+    type: sum
+    label: "Total Execution Count"
+    sql: ${TABLE}.execution_count ;;
     drill_fields: []
   }
+
+  measure: percentaage_failed_execution_count {
+    type: number
+    label: "Failed Execution Percentage"
+    sql: SUM(${TABLE}.all_failed_execution_count)/SUM(${TABLE}.execution_count)*100 ;;
+    drill_fields: []
+  }
+
+  measure: total_records {
+    type: count
+    label: "Total Records"
+    drill_fields: []
+  }
+
+
 }
