@@ -76,13 +76,20 @@ view: QueryStats_10_Minute_Interval {
     sql: ${TABLE}.timed_out_execution_count ;;
   }
 
+  # dimension: all_failed_avg_latency_seconds {
+  #   type: number
+  #   sql: ${TABLE}.all_failed_avg_latency_seconds ;;
+  # }
+
   measure: all_failed_avg_latency_seconds {
-    type: number
+    type: sum
+    label: "All Failed Avg Latency Seconds"
     sql: ${TABLE}.all_failed_avg_latency_seconds ;;
   }
 
   measure: count {
     type: count
+    label: "Total Count"
     drill_fields: []
   }
 }
