@@ -29,14 +29,4 @@ persist_with: spanner_default_datagroup
 #   }
 # }
 
-explore: QueryStats_10_Minute_Interval {}
-
-explore: query_stats_top_hour {}
-
-explore: query_stats_top_minute {}
-
-explore: query_stats_total_10minute {}
-
-explore: query_stats_total_hour {}
-
-explore: query_stats_total_minute {}
+explore: QueryStats_Minute_Interval {}

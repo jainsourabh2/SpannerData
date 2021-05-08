@@ -1,5 +1,5 @@
-view: QueryStats_10_Minute_Interval {
-  sql_table_name: `spanner_sys.query_stats_top_10minute`
+view: QueryStats_Minute_Interval {
+  sql_table_name: `spanner_sys.query_stats_top_minute`
     ;;
 
   # dimension: all_failed_execution_count {
@@ -98,7 +98,7 @@ view: QueryStats_10_Minute_Interval {
     type: sum
     label: "Total Execution Count"
     sql: ${TABLE}.execution_count ;;
-    drill_fields: []
+    drill_fields: [interval_end_time,text,avg_bytes,avg_cpu_seconds,avg_latency_seconds,avg_rows,avg_rows_scanned]
   }
 
   measure: percentaage_failed_execution_count {
