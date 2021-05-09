@@ -128,29 +128,6 @@ view: QueryStats_Minute_Interval {
   measure: total_records {
     type: count
     label: "Total Records"
-    html: <div class="vis">
-
-    <div class="vis-single-value" style="font-size:30px; background-image: linear-gradient(to right, #5A2FC2, #F84066); color:#ffffff">
-
-    <font color="#5A2FC2"><center><b>Day of campaign:</b>&nbsp; {{Query_Stats_Minute_Interval.failed_execution_count._rendered_value}} / 90 </font>
-
-    <p><em>{{Query_Stats_Minute_Interval.failed_execution_count._rendered_value}}% of Goal</em></p>
-
-    <p style="color:#ffffff;">{{ rendered_value }} Total Events </p>
-
-    <p style="float:left; font-family: Trebuchet MS;">
-
-    <i class="fa fa-facebook">&nbsp;</i> {{ Query_Stats_Minute_Interval.failed_execution_count._rendered_value._rendered_value }} Events&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-    <i class="fa fa-search">&nbsp;</i> {{ Query_Stats_Minute_Interval.failed_execution_count._rendered_value._rendered_value }} Events&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-    <i class="fa fa-leaf">&nbsp;</i> {{ Query_Stats_Minute_Interval.failed_execution_count._rendered_value._rendered_value }} Events</p></center>
-
-    </div>
-
-    </div>
-
-    ;;
   }
 
 
