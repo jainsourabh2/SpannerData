@@ -21,7 +21,7 @@ view: lock_stats_top_10_minute {
   measure: lock_wait_seconds {
     type: sum
     sql: ${TABLE}.LOCK_WAIT_SECONDS ;;
-    drill_fields: [lock_stats_top_10_minute__sample_lock_requests.offset,lock_stats_top_10_minute__sample_lock_requests.lock_mode,lock_stats_top_10_minute__sample_lock_requests.column]
+    drill_fields: [lock_wait_seconds,lock_stats_top_10_minute__sample_lock_requests.offset,lock_stats_top_10_minute__sample_lock_requests.lock_mode,lock_stats_top_10_minute__sample_lock_requests.column]
   }
 
   dimension: row_range_start_key {
