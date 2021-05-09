@@ -14,6 +14,20 @@ view: QueryStats_Minute_Interval {
     value_format: "0.00"
   }
 
+  dimension: average_cpu_seconds {
+    type: number
+    label: "Average CPU Seconds"
+    sql: SUM(${TABLE}.avg_cpu_seconds) ;;
+    value_format: "0.00"
+  }
+
+  dimension: average_latency_seconds {
+    type: number
+    label: "Average Latency Seconds"
+    sql: SUM(${TABLE}.avg_latency_seconds) ;;
+    value_format: "0.00"
+  }
+
   measure: avg_cpu_seconds {
     type: number
     label: "Average CPU Seconds"
@@ -58,6 +72,7 @@ view: QueryStats_Minute_Interval {
     timeframes: [
       raw,
       time,
+      hour,
       date,
       week,
       month,
@@ -70,6 +85,7 @@ view: QueryStats_Minute_Interval {
   dimension: text {
     type: string
     sql: ${TABLE}.text ;;
+    html: <body style="background-color:black;"><p style="color: white">{{ rendered_value }}</p></body> ;;
   }
 
   dimension: text_fingerprint {
@@ -112,7 +128,29 @@ view: QueryStats_Minute_Interval {
   measure: total_records {
     type: count
     label: "Total Records"
-    drill_fields: []
+    html: <div class="vis">
+
+    <div class="vis-single-value" style="font-size:30px; background-image: linear-gradient(to right, #5A2FC2, #F84066); color:#ffffff">
+
+    <font color="#5A2FC2"><center><b>Day of campaign:</b>&nbsp; {{Query_Stats_Minute_Interval.failed_execution_count._rendered_value}} / 90 </font>
+
+    <p><em>{{Query_Stats_Minute_Interval.failed_execution_count._rendered_value}}% of Goal</em></p>
+
+    <p style="color:#ffffff;">{{ rendered_value }} Total Events </p>
+
+    <p style="float:left; font-family: Trebuchet MS;">
+
+    <i class="fa fa-facebook">&nbsp;</i> {{ Query_Stats_Minute_Interval.failed_execution_count._rendered_value._rendered_value }} Events&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+    <i class="fa fa-search">&nbsp;</i> {{ Query_Stats_Minute_Interval.failed_execution_count._rendered_value._rendered_value }} Events&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+    <i class="fa fa-leaf">&nbsp;</i> {{ Query_Stats_Minute_Interval.failed_execution_count._rendered_value._rendered_value }} Events</p></center>
+
+    </div>
+
+    </div>
+
+    ;;
   }
 
 

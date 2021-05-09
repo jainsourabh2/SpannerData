@@ -30,3 +30,12 @@ persist_with: spanner_default_datagroup
 # }
 
 explore: QueryStats_Minute_Interval {}
+
+explore: Lock_Stats_10Minute_Interval {
+
+  # join: lock_stats_top_10_minute__sample_lock_requests {
+  #   view_label: "Lock Stats Top 10 Minute: Sample Lock Requests"
+  #   sql: LEFT JOIN UNNEST(${Lock_Stats_10Minute_Interval.sample_lock_requests}) as lock_stats_top_10_minute__sample_lock_requests ;;
+  #   relationship: one_to_many
+  # }
+}
