@@ -85,7 +85,6 @@ view: QueryStats_Minute_Interval {
   dimension: text {
     type: string
     sql: ${TABLE}.text ;;
-    html: <body style="background-color:black;"><p style="color: white">{{ rendered_value }}</p></body> ;;
   }
 
   dimension: text_fingerprint {
