@@ -24,19 +24,19 @@ view: txn_stats_top_10minute {
   sql_table_name: `dr-poc-305406.spanner_sys.txn_stats_top_10minute`
     ;;
 
-  dimension: avg_bytes {
-    type: number
-    sql: ${TABLE}.avg_bytes ;;
+  measure: avg_bytes {
+    type: sum
+    sql: SUM(${TABLE}.avg_bytes)/SUM(${count}) ;;
   }
 
-  dimension: avg_commit_latency_seconds {
-    type: number
-    sql: ${TABLE}.avg_commit_latency_seconds ;;
+  measure: avg_commit_latency_seconds {
+    type: sum
+    sql: SUM(${TABLE}.avg_commit_latency_seconds)/SUM(${count}) ;;
   }
 
-  dimension: avg_participants {
-    type: number
-    sql: ${TABLE}.avg_participants ;;
+  measure: avg_participants {
+    type: sum
+    sql: SUM(${TABLE}.avg_participants)/SUM(${count}) ;;
   }
 
   dimension: avg_total_latency_seconds {
@@ -44,19 +44,19 @@ view: txn_stats_top_10minute {
     sql: ${TABLE}.avg_total_latency_seconds ;;
   }
 
-  dimension: commit_abort_count {
-    type: number
-    sql: ${TABLE}.commit_abort_count ;;
+  measure: commit_abort_count {
+    type: sum
+    sql: SUM(${TABLE}.commit_abort_count) ;;
   }
 
-  dimension: commit_attempt_count {
-    type: number
-    sql: ${TABLE}.commit_attempt_count ;;
+  measure: commit_attempt_count {
+    type: sum
+    sql: SUM(${TABLE}.commit_attempt_count) ;;
   }
 
-  dimension: commit_failed_precondition_count {
-    type: number
-    sql: ${TABLE}.commit_failed_precondition_count ;;
+  measure: commit_failed_precondition_count {
+    type: sum
+    sql: SUM(${TABLE}.commit_failed_precondition_count) ;;
   }
 
   dimension: fprint {
@@ -69,6 +69,7 @@ view: txn_stats_top_10minute {
     timeframes: [
       raw,
       time,
+      hour,
       date,
       week,
       month,
