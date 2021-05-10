@@ -40,3 +40,24 @@ explore: lock_stats_top_10_minute {
     relationship: one_to_many
   }
 }
+
+explore: txn_stats_top_10minute {
+
+  join: txn_stats_top_10minute__read_columns {
+    view_label: "Txn Stats Top 10minute: Read Columns"
+    sql: LEFT JOIN UNNEST(${txn_stats_top_10minute.read_columns}) as txn_stats_top_10minute__read_columns WITH OFFSET AS txn_stats_top_10minute__read_columns_with_offset;;
+    relationship: one_to_many
+  }
+
+  join: txn_stats_top_10minute__write_delete_tables {
+    view_label: "Txn Stats Top 10minute: Write Delete Tables"
+    sql: LEFT JOIN UNNEST(${txn_stats_top_10minute.write_delete_tables}) as txn_stats_top_10minute__write_delete_tables WITH OFFSET AS txn_stats_top_10minute__write_delete_tables_with_offset ;;
+    relationship: one_to_many
+  }
+
+  join: txn_stats_top_10minute__write_constructive_columns {
+    view_label: "Txn Stats Top 10minute: Write Constructive Columns"
+    sql: LEFT JOIN UNNEST(${txn_stats_top_10minute.write_constructive_columns}) as txn_stats_top_10minute__write_constructive_columns WITH OFFSET AS txn_stats_top_10minute__write_constructive_columns_with_offset ;;
+    relationship: one_to_many
+  }
+}
