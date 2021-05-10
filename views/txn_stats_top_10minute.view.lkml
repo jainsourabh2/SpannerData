@@ -25,38 +25,38 @@ view: txn_stats_top_10minute {
     ;;
 
   measure: avg_bytes {
-    type: sum
-    sql: SUM(${TABLE}.avg_bytes)/SUM(${count}) ;;
+    type: average
+    sql: ${TABLE}.avg_bytes ;;
   }
 
   measure: avg_commit_latency_seconds {
-    type: sum
-    sql: SUM(${TABLE}.avg_commit_latency_seconds)/SUM(${count}) ;;
+    type: average
+    sql: ${TABLE}.avg_commit_latency_seconds ;;
   }
 
   measure: avg_participants {
-    type: sum
-    sql: SUM(${TABLE}.avg_participants)/SUM(${count}) ;;
+    type: average
+    sql: ${TABLE}.avg_participants ;;
   }
 
-  dimension: avg_total_latency_seconds {
-    type: number
+  measure: avg_total_latency_seconds {
+    type: average
     sql: ${TABLE}.avg_total_latency_seconds ;;
   }
 
   measure: commit_abort_count {
     type: sum
-    sql: SUM(${TABLE}.commit_abort_count) ;;
+    sql: ${TABLE}.commit_abort_count ;;
   }
 
   measure: commit_attempt_count {
     type: sum
-    sql: SUM(${TABLE}.commit_attempt_count) ;;
+    sql: ${TABLE}.commit_attempt_count ;;
   }
 
   measure: commit_failed_precondition_count {
     type: sum
-    sql: SUM(${TABLE}.commit_failed_precondition_count) ;;
+    sql: ${TABLE}.commit_failed_precondition_count ;;
   }
 
   dimension: fprint {
