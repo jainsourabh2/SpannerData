@@ -17,14 +17,14 @@ view: QueryStats_Minute_Interval {
   dimension: average_cpu_seconds {
     type: number
     label: "Average CPU Seconds"
-    sql: SUM(${TABLE}.avg_cpu_seconds) ;;
+    sql: ${TABLE}.avg_cpu_seconds ;;
     value_format: "0.00"
   }
 
   dimension: average_latency_seconds {
     type: number
     label: "Average Latency Seconds"
-    sql: SUM(${TABLE}.avg_latency_seconds) ;;
+    sql: ${TABLE}.avg_latency_seconds ;;
     value_format: "0.00"
   }
 
