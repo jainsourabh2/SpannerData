@@ -12,7 +12,7 @@ view: txn_stats_top_10minute {
   measure: avg_commit_latency_seconds {
     type: average
     sql: ${TABLE}.avg_commit_latency_seconds ;;
-    drill_fields: [txn_stats_top_10minute__write_constructive_columns.offset,txn_stats_top_10minute__write_constructive_columns.write_constructive_columns]
+    drill_fields: [txn_stats_top_10minute__write_constructive_columns.write_constructive_columns,txn_stats_top_10minute__read_columns.read_columns]
   }
 
   measure: avg_participants {
